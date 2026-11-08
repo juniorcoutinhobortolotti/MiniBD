@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="JUNIOR BORTOLOTTI — RU 4187385" />
+  <meta name="description"
+        content="Mini BD: aplicação web didática para ensinar tabela, campo, registro, chave primária e consultas em banco de dados." />
+  <title>Mini BD — Oficina de Banco de Dados</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============ CABEÇALHO ============ -->
+  <header>
+    <h1>🗄️ Mini BD</h1>
+    <p class="sub">
+      Aprender banco de dados construindo um — tabela, campos, registros e consultas.
+    </p>
+  </header>
+
+  <main>
+
+    <!-- ============ ETAPA 1 — CRIAR TABELA ============ -->
+    <section class="card" id="cardCriar" aria-labelledby="tituloCriar">
+      <h2 id="tituloCriar"><span class="badge">1</span> Criar a tabela</h2>
+
+      <div class="campo-nome-tabela">
+        <label for="nomeTabela">Nome da tabela</label>
+        <input type="text" id="nomeTabela"
+               placeholder="ex.: jogos, livros, alunos" autocomplete="off" />
+      </div>
+
+      <p class="rotulo-secao">Campos (colunas) da tabela:</p>
+
+      <!-- As linhas de campo são criadas dinamicamente pelo script.js -->
+      <div id="listaCampos"></div>
+
+      <div class="acoes">
+        <button type="button" class="sec" id="btnAddCampo">+ Adicionar campo</button>
+        <button type="button" id="btnCriarTabela">Criar tabela</button>
+        <button type="button" class="sec" id="btnExemplo">Carregar exemplo pronto</button>
+      </div>
+    </section>
+
+    <!-- ============ ETAPA 2 — INFO DA TABELA ============ -->
+    <section class="card oculto" id="cardInfo" aria-labelledby="tituloInfo">
+      <h2 id="tituloInfo"><span class="badge">2</span> Sua tabela</h2>
+      <p><strong>Tabela:</strong> <span id="infoNome"></span></p>
+      <div class="chips" id="infoCampos"></div>
+      <div class="acoes">
+        <button type="button" class="danger" id="btnApagarTabela">
+          Apagar tabela e recomeçar
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ ETAPA 3 — INSERIR REGISTRO ============ -->
+    <section class="card oculto" id="cardInserir" aria-labelledby="tituloInserir">
+      <h2 id="tituloInserir"><span class="badge">3</span> Inserir um registro (linha)</h2>
+      <!-- O formulário é gerado dinamicamente com base nos campos da tabela -->
+      <div id="formRegistro" class="grade-form"></div>
+      <div class="acoes">
+        <button type="button" id="btnInserir">Inserir registro</button>
+      </div>
+    </section>
+
+    <!-- ============ ETAPA 4 — CONSULTAR ============ -->
+    <section class="card oculto" id="cardConsultar" aria-labelledby="tituloConsultar">
+      <h2 id="tituloConsultar"><span class="badge">4</span> Consultar (SELECT)</h2>
+
+      <div class="grade-consulta">
+        <div>
+          <label for="campoConsulta">Campo</label>
+          <select id="campoConsulta"></select>
+        </div>
+        <div>
+          <label for="operador">Operador</label>
+          <select id="operador">
+            <option value="=">igual a (=)</option>
+            <option value="contem">contém</option>
+            <option value=">">maior que (&gt;)</option>
+            <option value="<">menor que (&lt;)</option>
+            <option value=">=">maior ou igual (&gt;=)</option>
+            <option value="<=">menor ou igual (&lt;=)</option>
+          </select>
+        </div>
+        <div>
+          <label for="valorConsulta">Valor</label>
+          <input type="text" id="valorConsulta" placeholder="digite o valor" />
+        </div>
+      </div>
+
+      <div class="acoes">
+        <button type="button" id="btnConsultar">Executar consulta</button>
+        <button type="button" class="sec" id="btnTodos">Mostrar todos (sem filtro)</button>
+      </div>
+
+      <!-- Aqui aparece o SQL equivalente à consulta montada na tela -->
+      <pre class="sql" id="sqlGerado">-- a consulta aparecerá aqui</pre>
+      <p class="contador" id="contadorConsulta"></p>
+
+      <div class="rolagem" id="resultadoConsulta"></div>
+    </section>
+
+    <!-- ============ ETAPA 5 — TODOS OS REGISTROS ============ -->
+    <section class="card oculto" id="cardTabela" aria-labelledby="tituloTabela">
+      <h2 id="tituloTabela"><span class="badge">5</span> Todos os registros</h2>
+      <div class="rolagem" id="tabelaRegistros"></div>
+      <p class="contador" id="contadorTotal"></p>
+      <div class="acoes">
+        <button type="button" class="sec" id="btnCSV">Exportar CSV</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      Mini BD · Atividade Extensionista II — Tecnologia Aplicada à Inclusão Digital<br />
+      JUNIOR BORTOLOTTI — RU 4187385 · CST em Análise e Desenvolvimento de Sistemas · UNINTER
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
